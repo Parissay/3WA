@@ -2,6 +2,7 @@
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Parissay/3WA/master/Chifoumi/assets/github-view.jpg" alt="Chifoumi - The Game">
+  <br>
   <i>" Try to beat me !" </i>
 </p>
 
