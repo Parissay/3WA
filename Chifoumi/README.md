@@ -1,7 +1,7 @@
 ﻿# Chifoumi - The Game 
 
 <p align="center">
-  <img src="https://github.com/Parissay/3WA/Chifoumi/assets/logo-horizontal2.png" alt="Chifoumi - The Game">
+  <img src="https://github.com/Parissay/3WA/Chifoumi/assets/github-view.jpg" alt="Chifoumi - The Game">
   <i>" Try to beat me !" </i>
 </p>
 
@@ -172,4 +172,4 @@ If you have comments, corrections, complaints, or ideas for improvements, feel f
 
 **Chifoumi - The Game** was created by [@Parissay](https://github.com/Parissay). 
 
-**Chifoumi - The Game** is available under the MIT license. See the [LICENSE file](https://github.com/Parissay/3WA/Chifoumi/LICENSE) for more info.
+**Chifoumi - The Game** is available under the MIT license. See the [LICENSE file](https://github.com/Parissay/3WA/Chifoumi/LICENSE.md) for more info.
