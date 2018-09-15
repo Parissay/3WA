@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noindex">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+	<title>Chifoumi - The Game</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+</head>
+<body>	
+	<noscript id="warning-background">
+		<div id="noscript"></div>
+	</noscript>
+	<div id="globalContainer">
+		<header>
+			<h1>CHIFOUMI</h1>
+			<h2>THE GAME</h2>
+		</header>
+		<main id="game">
+				<div id="conversation">
+					<div id="startConversation"><p>Essayes de me battre !</p></div>
+					<div id="humanResult"></div>
+					<div id="computerResult"></div>
+				</div>
+				<div id="characters">
+					<img src="img/humanNeutral.png" id="human" alt="personnage humain">
+					<img src="img/robotNeutral.png" id="computer" alt="personnage ordinateur">
+				</div>		
+		</main>
+		<footer id="options">
+				<div id="choices">
+					<img src="img/stone.png" alt="pierre" id="rock">
+					<img src="img/paper.png" alt="papier" id="paper">
+					<img src="img/scissors.png" alt="ciseaux" id="scissors">
+				</div>
+				<div id="result"></div>
+				<i id="replay" class="fas fa-sync-alt"></i>
+		</footer>
+	</div>	
+	<script type="text/javascript" src="js/game.js"></script>
+</body>
+</html>

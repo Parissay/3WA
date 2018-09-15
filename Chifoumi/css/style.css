@@ -1,0 +1,154 @@
+/* Chifoumi - 2018 - By Parissay Banthrongsakd for 3W Academy | parissay.com */
+
+/* General proprieties */
+:root {
+	--white: #fff;
+	--green-darker: #003f4c;
+	--green-dark: #006378;
+	--green-light: #366e7a;
+	--green-lighter: #38ebd4;
+	--grey: #dce9ef;
+	--black: #1b1b1b;
+}
+body * {
+	box-sizing: border-box;
+}
+html {
+	font-size: 62.5%;
+}
+body {
+	background-color: var(--green-dark);
+}
+#replay {
+	display: none;
+}
+
+/* Texts and colors*/
+h1, h2, p {
+	font-family: 'Open Sans', sans-serif;
+}
+h1, h2 {
+	font-weight: bold;
+}
+h1 {
+	color: var(--green-lighter);
+	font-size: 5rem;
+}
+h2 {
+	color: var(--white);
+	font-size: 3rem;
+}
+
+/* Blocks proprieties */
+#globalContainer {
+	z-index: 1;
+}
+header {
+	width: 80%;
+	margin: 1% auto;
+	text-align: center;
+}
+main {
+	width: 900px;
+	margin: 0 auto;
+	background-color: var(--grey);
+	text-align: center;
+	border-radius: 30px 30px 0 0;
+}
+footer {
+	width: 900px;
+	height: 200px;
+	margin: 0 auto;
+	border-radius: 0 0 30px 30px;
+	background-color: var(--green-darker);
+}
+#game {
+	padding: 2%;
+}
+
+/* Conversation and characters */
+#startConversation {
+	background-color: var(--black);
+	color: var(--white);
+	width: 400px;
+	padding: 2%;
+	font-size: 3rem;
+	float: right;
+}
+#humanResult, #computerResult {
+	background-color: var(--black);
+	color: var(--white);
+	width: 400px;
+	padding: 2%;
+	font-size: 3rem;
+	display: none;
+}
+#humanResult {
+	float: left;
+}
+#computerResult {
+	float: right;
+}
+
+/* Characters */
+#characters {
+	clear: both;
+	vertical-align: baseline;
+}
+#human, #computer {
+	width: 300px;
+	height: 326px;
+	margin: 2% 5%;
+}
+
+/* Footer | Choices */
+#choices, #result, #replay {
+	text-align: center;
+}
+#choices img {
+	width: 150px;
+	height: 131px;
+	margin: 3% 3%;
+	cursor: pointer;
+	background-color: var(--green-light);
+	border-radius: 30px;
+}
+#choices img:hover {
+	border: 5px solid var(--grey);
+}
+#result {
+	margin: 0 auto;
+	font-size: 5rem;
+	padding: 2%;
+	color: var(--white);
+}
+#replay {
+	font-size: 5rem;
+	cursor: pointer;	
+	color: var(--white);
+	padding: 2%;
+}
+#replay:hover {
+	color: var(--green-lighter);
+}
+
+/* Case : no JavaScript */
+#warning-background {
+	background-color: var(--black);
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	margin-top: -1%;
+}
+#noscript {
+	width: 700px;
+	height: 434px;
+	background-image: url(../img/js-warning.jpg);
+	z-index: 2;
+	position: absolute;
+	right: 30%;
+	top: 25%;
+}
+#noscript:hover {
+	background-image: url(../img/js-what.jpg);
+}
