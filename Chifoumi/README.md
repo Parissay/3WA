@@ -165,7 +165,7 @@ switch (true) {
 
 La conversation de départ, ainsi que les icônes de choix utilisateur, seront ensuite cachés. Deux bulles contenant les choix du joueur et de l'ordinateur seront affichées, ainsi qu'un bouton *replay* (rejouer). Ce dernier réinitialisera l'ensemble des bulles de conversations et illustrations.
 
-## Author and license ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
+## Author and license
 
 If you have comments, corrections, complaints, or ideas for improvements, feel free to send me a message.
 
@@ -173,4 +173,4 @@ If you have comments, corrections, complaints, or ideas for improvements, feel f
 
 **Chifoumi - The Game** was created by [@Parissay](https://github.com/Parissay). 
 
-**Chifoumi - The Game** is available under the MIT license. See the [LICENSE file](https://github.com/Parissay/3WA/blob/master/Chifoumi/LICENSE.md) for more info.
+**Chifoumi - The Game** is available under the MIT license. See the [LICENSE file](https://github.com/Parissay/3WA/blob/master/Chifoumi/LICENSE.md) for more info. ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
