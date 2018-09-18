@@ -1,0 +1,341 @@
+/* =========================================================================================== *
+ * ======================================== GLOBAL DEVICE ==================================== *
+ * =========================================================================================== */
+
+/* --------------------------------------- GLOBAL SETTINGS ----------------------------------- */
+
+:root {
+	--white-real: #fff;
+	--white: #fafafa;
+	--green: #337169;
+	--green-opacity: rgba(79,136,127,0.8);
+	--black: #1b1b1b;
+	--black-opacity: rgba(0,0,0,0.6);
+	--blue: #418d9b;
+	--red: #ed7474;
+	--red-stronger: #c43737;
+	--grey: #e8e8e8;
+	--grey-light: #f7f5ed;
+}
+body * {
+	box-sizing: border-box;
+	text-decoration: none;
+	margin: 0;
+}
+html {
+	font-size: 62.5%;
+}
+img {
+	max-width: 100%;
+	height: auto;
+	width: auto;
+}
+body {
+	background-color: var(--grey-light);
+}
+.d-view {
+	display: none;
+}
+.admin-table {
+	width: 100%;
+	margin: 0 auto;	
+}
+.admin-table td {
+	border: 2px solid white;
+}
+.admin-table td:nth-child(1) {
+	background-color: var(--grey);
+	font-style: italic;
+	font-size: 1.5rem;
+	padding: 1rem 1rem;
+}
+.admin-table td:nth-child(2) {
+	background-color: var(--green-opacity);
+	font-size: 1.5rem;
+	/* padding: 0 1rem; */
+	text-align: center;
+	vertical-align: middle;
+}
+.admin-table td:nth-child(3) {
+	background-color: var(--red);
+	font-size: 1.5rem;
+	/* padding: 0 1rem; */
+	text-align: center;
+	vertical-align: middle;
+}
+.admin-table td a {
+	padding: 0 1rem;
+	color: var(--white);
+}
+
+/* ----------------------------------------- TYPOGRAPHY -------------------------------------- */
+
+h1, h2, h3, h4, h5, h6, p, a, .valider, .supprimer, .labelStyle, .selectStyle, .articleShowPost, .inputStyle, .areaStyle {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+}
+h1, h2, h3, h4, h5, h6, header a {
+	color: var(--green);
+}
+input, textarea, select {
+	font-size: 1.5rem;
+}
+h1 {
+	font-size: 4rem;
+	margin-bottom: 2%;
+}
+h2 {
+	margin: 3% 0;
+	font-size: 2rem;
+	font-weight: bold;
+}
+h2 a {
+	color: var(--green);
+}
+h3 {
+	margin: 3% 0;
+	font-size: 1.3rem;
+	color: var(--green-opacity);
+}
+h4, h6 {
+	font-size: 2rem;
+	margin: 5% 0;
+	font-weight: bold;
+	padding-bottom: 2%;
+	border-bottom: 1px solid var(--green);
+}
+h5 {
+	font-size: 1.3rem;
+}
+a {
+	text-decoration: none;
+}
+p {
+	font-size: 1.7rem;
+	line-height: 2.5rem;
+	color: var(--black);
+	text-align: justify;
+}
+.bold {
+	font-weight: bold;
+}
+.boldItalic {
+	font-weight: bold;
+	font-style: italic;
+}
+
+/* =========================================================================================== *
+ * ======================================== MOBILE DEVICE ==================================== *
+ * =========================================================================================== */
+
+/* ------------------------------------------- HEADER ---------------------------------------- */
+
+#headerContainer {
+	width: 70%;
+	margin: 2% auto;
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+	-ms-align-items: center;
+	align-items: center;
+}
+header nav {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+	-ms-align-items: center;
+	align-items: center;
+	margin-left: 6%;
+	margin-right: 6%;
+}
+header nav a {
+	font-size: 2em;
+	color: var(--green);
+	padding: 5% 20%;
+	text-align: center;
+}
+header nav a:hover {
+	color: var(--white);
+	background-color: var(--green);
+}
+.parallax {
+	background-image: url("../img/parallax-small.jpg");
+	height: 200px;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+/* -------------------------------------------- MAIN ----------------------------------------- */
+main {
+	width: 90%;
+	margin: 0 auto;
+}
+main ul li {
+	margin: 3rem 0;
+	margin: 3rem 0;
+}
+.clear {
+	clear: both;
+}
+.articleShowPost {
+	margin-top: 2%;
+	font-size: 1.6rem;
+	color: var(--black-opacity);
+}
+.labelStyle {
+	font-size: 2rem;
+}
+.inputStyle{
+	width: 100%;
+	height: 30px;
+	border: 1px solid grey;
+	background-color: var(--white-real);
+	margin-bottom: 2rem;
+}
+.areaStyle {
+	width: 100%;
+	/* height: 20vh; */
+	height: 15rem;
+	border: 1px solid grey;
+	background-color: var(--white-real);
+	resize: none;
+	margin-bottom: 2rem;
+}
+.selectStyle{
+	width: 100%;
+	height: 3rem;
+	border: 1px solid grey;
+	background-color: var(--white-real);
+	margin-bottom: 2rem;
+}
+label {
+	font-size: 1.5em;
+	color: var(--green);
+	display: block;
+	margin: 2% 0;
+}
+.valider {
+	/* display: block; */
+	border: none;
+	background-color: var(--green-opacity);
+	color: var(--white);
+	padding: 2% 5%;
+	float: right;
+	margin: 5% 0;
+	cursor: pointer;
+	font-size: 1.3rem;
+	transition: 0.3s;
+}
+.valider:hover {
+	background-color: var(--green);
+}
+.supprimer {
+	/* display: block; */
+	border: none;
+	background-color: var(--red);
+	color: var(--white);
+	padding: 2% 5%;
+	float: right;
+	margin: 5%;
+	cursor: pointer;
+	font-size: 1.3rem;
+	transition: 0.3s;
+}
+.supprimer:hover {
+	background-color: var(--red-stronger);
+}
+.btn-write {
+	display: inline-block;
+	border: none;
+	background-color: var(--green-opacity);
+	color: var(--white);
+	padding: 1rem 1rem;
+	width: auto;
+	margin: 1rem auto;
+	cursor: pointer;
+	font-size: 1.5rem;
+}
+#show-post-container {
+	margin: 3rem auto;
+}
+
+
+/* ------------------------------------------- FOOTER ---------------------------------------- */
+
+footer {
+	clear: both;
+	background-color: var(--green);
+	text-align: center;
+	padding: 5% 0;
+	margin-top: 5%;
+}
+footer a {
+	color: var(--white);
+	padding: 2%;
+	margin: 0 2%;
+	font-size: 1.3rem;
+}
+footer a:hover {
+	background-color: var(--green-opacity);
+}
+
+/* =========================================================================================== *
+ * ======================================== TABLET DEVICE ==================================== *
+ * =========================================================================================== */
+
+@media screen and (min-width: 768px) {
+
+	/* -------------------------------------------- MAIN ------------------------------------- */
+
+	main {
+		width: 70%;
+	}
+	.btn-write {
+		font-size: 1.8rem;
+	}
+	.btn-write:hover {
+		background-color: var(--green);
+	}
+	.parallax {
+		height: 400px;
+	}
+
+	/* ------------------------------------------- FOOTER ------------------------------------ */
+	
+	footer {
+		padding: 40px 0;
+	}
+	footer a {
+		padding: 20px;
+	}
+}
+
+/* =========================================================================================== *
+ * ======================================== DESKTOP DEVICE =================================== *
+ * =========================================================================================== */
+
+@media screen and (min-width: 1024px) {
+
+	/* -------------------------------------------- MAIN ------------------------------------- */
+
+	main {
+		max-width: 800px;
+	}
+}

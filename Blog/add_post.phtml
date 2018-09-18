@@ -1,0 +1,33 @@
+<h2>REDIGER UN ARTICLE</h2>
+
+<form action="add_post.php" method="POST">
+
+	<label for="Title" class="labelStyle">Titre de l'article :</label>
+	<br>
+	<input class="inputStyle" type="text" name="Title" for="Title">
+
+	<label for="Contents" class="labelStyle">Votre article :</label>
+	<br>
+	<textarea class="areaStyle" type="text" name="Contents" for="Contents"></textarea>
+
+	<label for="Author_Id" class="labelStyle">Auteur :</label>
+	<br>
+		<select class="selectStyle" name="Author_Id" for="Author_Id">
+			<?php foreach($author as $authorID): ?>
+				<option value="<?= htmlspecialchars($authorID['Id']) ?>"><?= htmlspecialchars($authorID['FirstName']) ?> <?= htmlspecialchars($authorID['LastName']) ?></option>
+			<?php endforeach; ?>
+		</select>
+
+	<label for="Category_Id" class="labelStyle">Catégorie :</label>
+	<br>
+		<select class="selectStyle" name="Category_Id" for="Category_Id">
+			<?php foreach($categories as $categorie): ?>
+				<option value="<?= htmlspecialchars($categorie['Id']) ?>"><?= htmlspecialchars($categorie['Name']) ?>
+				</option>
+			<?php endforeach; ?>
+		</select>
+
+	<input type="submit" class="valider" value="PUBLIER">
+	<input type="reset" class="supprimer" value="EFFACER">
+
+</form>

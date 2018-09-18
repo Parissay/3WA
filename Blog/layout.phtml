@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="robots" content="noindex">
+	<meta name="theme-color" content="#337169">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Blog de John Doe</title>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!-- FONTS -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400i" rel="stylesheet"> 
+	<!-- JAVASCRIPT -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+	<div id="global-container">
+		<header>
+			<div id="headerContainer">
+				<a href="index.php"><h1>JOHN <span class="bold">DOE</span></h1></a>
+			</div>
+			<div class="parallax"></div>
+		</header>
+		<main>
+			<?php include $template.'.phtml' ?>
+		</main>
+		<footer>
+				<a href="admin.php">Accès administrateur</a>
+		</footer>
+	</div>
+</body>
+</html>

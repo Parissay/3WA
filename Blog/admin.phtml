@@ -1,0 +1,37 @@
+<h2>PANNEAU D'ADMINISTRATION</h2>
+<a href="add_post.php" class="btn-write">Rédiger un article</a>
+<h3>Liste des articles publiés</h3>
+<table class="d-view">
+	<tr>
+		<th>TITRE</th>
+		<th>EXTRAIT</th>
+		<th>AUTEUR</th>
+		<th>CATEGORIE</th>
+		<th>ACTIONS</th>
+	</tr>
+	<?php foreach ($articles as $article): ?>
+	<tr>
+		<td><?= $article['Title'] ?></td>
+		<td><?= substr($article['Contents'], 0, 150).'[...]' ?></td>
+		<td><?= $article['FirstName']. ' ' .$article['LastName'] ?></td>
+		<td><?= $article['Name'] ?></td>
+		<td>
+			<a href="edit_post.php?Id=<?=intval($article['Id'])?>">éditer</a>
+			<a href="delete_post.php?Id=<?=intval($article['Id'])?>">supprimer</a>
+		</td> 
+	</tr>
+	<?php endforeach ?>
+</table>
+<table class="m-view admin-table">
+	<?php foreach ($articles as $article): ?>
+	<tr>
+		<td><?= $article['Title'] ?></td>
+		<td>
+			<a href="edit_post.php?Id=<?=intval($article['Id'])?>">éditer</a>
+		</td>
+		<td>			
+			<a href="delete_post.php?Id=<?=intval($article['Id'])?>">supprimer</a>
+		</td> 
+	</tr>
+	<?php endforeach ?>
+</table>
