@@ -4,41 +4,58 @@
 
 	if (empty($_POST)) {
 
-		$query1 = '
-		SELECT 
-			Author.Id,
-			Author.FirstName,
-			Author.LastName
-		FROM Author	
+		// Get all authors.
+		$query =
+		'
+			SELECT
+				a_id,
+				a_name,
+				a_surname
+			FROM
+				authors
 		';
-		$temp1 = $dbh->query($query1);
-		$author = $temp1->fetchAll();
 
-		$query2 = '
-		SELECT
-			Category.Id,
-			Category.Name
-		FROM Category
+		$result = $pdo -> query($query);
+		$authors = $result -> fetchAll();
+
+		// Get all categories.
+		$query =
+		'
+			SELECT
+				cat_id,
+				cat_name
+			FROM
+				categories
 		';
-		$temp2 = $dbh->query($query2);
-		$categories = $temp2->fetchAll();
 
+		$result = $pdo -> query($query);
+		$categories = $result -> fetchAll();
+
+		// Select and display the template.
 		$template = 'add_post';
 		include 'layout.phtml';
 
 	} else {
 
-		$query3 = '
-			INSERT INTO Post (Title, Contents, Author_Id, Category_Id, CreationTimestamp)
+		// Add a post
+		$query =
+		'
+			INSERT INTO
+				posts (
+					p_title,
+					p_content,
+					p_author_id,
+					p_category_id,
+					p_creation_date
+				)
 			VALUES (?, ?, ?, ?, NOW())
-			';
-		$article = $dbh->prepare($query3);
-		$article->execute([$_POST['Title'], $_POST['Contents'], $_POST['Author_Id'], $_POST['Category_Id']]);
+		';
 
+		$result = $pdo -> prepare($query);
+		$result -> execute([$_POST['title'], $_POST['content'], $_POST['author'], $_POST['category']]);
+
+		// Return to admin panel.
 		header('Location: index.php');
-
 		exit();
 	
 	}
-
-

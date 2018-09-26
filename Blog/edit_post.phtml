@@ -1,18 +1,20 @@
 <h2>EDITER UN ARTICLE</h2>
 
 <form action="edit_post.php" method="POST">
-	<input type="hidden" name="articleName" value="<?= intval($post['Id']) ?>">
+	<!-- Using a hidden field to specify which post to attach the comment to -->
+	<input type="hidden" name="postId" value="<?= intval($post['id']) ?>">
 
 	<label for="Title" class="labelStyle">Titre de l'article :</label>
 	<br>
-	<input class="inputStyle" type="text" name="Title" for="Title" value="<?= htmlspecialchars($post['Title']) ?>">
+	<input class="inputStyle" type="text" name="Title" for="Title" value="<?= htmlspecialchars($post['p_title']) ?>">
 
 	<label for="Contents" class="labelStyle">Votre article :</label>
 	<br>
 	<textarea class="areaStyle" type="text" name="Contents" for="Contents">
-		<?= htmlspecialchars($post['Contents']) ?>
+		<?= htmlspecialchars($post['p_content']) ?>
 	</textarea>
 
 	<input type="submit" class="valider" value="MODIFIER">
-	<input type="reset" class="supprimer" value="EFFACER">
+	<input type="reset" class="supprimer" value="EFFACER">	
+
 </form>

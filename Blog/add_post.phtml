@@ -2,27 +2,27 @@
 
 <form action="add_post.php" method="POST">
 
-	<label for="Title" class="labelStyle">Titre de l'article :</label>
+	<label for="title" class="labelStyle">Titre de l'article :</label>
 	<br>
-	<input class="inputStyle" type="text" name="Title" for="Title">
+	<input class="inputStyle" type="text" name="title" for="title">
 
-	<label for="Contents" class="labelStyle">Votre article :</label>
+	<label for="content" class="labelStyle">Votre article :</label>
 	<br>
-	<textarea class="areaStyle" type="text" name="Contents" for="Contents"></textarea>
+	<textarea class="areaStyle" type="text" name="content" for="content"></textarea>
 
-	<label for="Author_Id" class="labelStyle">Auteur :</label>
+	<label for="author" class="labelStyle">Auteur :</label>
 	<br>
-		<select class="selectStyle" name="Author_Id" for="Author_Id">
-			<?php foreach($author as $authorID): ?>
-				<option value="<?= htmlspecialchars($authorID['Id']) ?>"><?= htmlspecialchars($authorID['FirstName']) ?> <?= htmlspecialchars($authorID['LastName']) ?></option>
+		<select class="selectStyle" name="author" for="author">
+			<?php foreach($authors as $author): ?>
+				<option value="<?= intval($author['id']) ?>"><?= htmlspecialchars($author['a_name']) ?> <?= htmlspecialchars($author['a_surname']) ?></option>
 			<?php endforeach; ?>
 		</select>
 
-	<label for="Category_Id" class="labelStyle">Catégorie :</label>
+	<label for="category" class="labelStyle">Catégorie :</label>
 	<br>
-		<select class="selectStyle" name="Category_Id" for="Category_Id">
+		<select class="selectStyle" name="category" for="category">
 			<?php foreach($categories as $categorie): ?>
-				<option value="<?= htmlspecialchars($categorie['Id']) ?>"><?= htmlspecialchars($categorie['Name']) ?>
+				<option value="<?= intval($categorie['id']) ?>"><?= htmlspecialchars($categorie['cat_name']) ?>
 				</option>
 			<?php endforeach; ?>
 		</select>

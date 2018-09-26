@@ -1,14 +1,14 @@
 <ul>
-	<?php foreach ($articles as $article): ?>
+	<?php foreach ($posts as $post): ?>
 		<li>			
 			<h2>
-			<a href="show_post.php?Id=<?= intval($article['Id']) ?>"><?= htmlspecialchars($article['Title']) ?></a>
+			<a href="show_post.php?Id=<?= intval($post['p_id']) ?>"><?= htmlspecialchars($post['p_title']) ?></a>
 			</h2>
-			<h3>Posté le <span class="boldItalic"><?= htmlspecialchars($article['CreationTimestamp']) ?></span> par <span class="boldItalic"><?= htmlspecialchars($article['FirstName'])?> <?= htmlspecialchars($article['LastName']) ?></span></h3>
+			<h3>Posté le <span class="boldItalic"><?= htmlspecialchars($post['p_creation_date']) ?></span> par <span class="boldItalic"><?= htmlspecialchars($post['p_name'])?> <?= htmlspecialchars($post['p_surname']) ?></span></h3>
 			<article class="articleIndex">
-				<p><?= substr(htmlspecialchars($article['Contents']), 0, 150) ?>[...]</p>
+				<p><?= substr(htmlspecialchars($post['p_content']), 0, 150) ?>[...]</p>
 			</article>
-			<a class="valider" href="show_post.php?Id=<?= intval($article['Id']) ?>">Lire la suite</a>
+			<a class="valider" href="show_post.php?Id=<?= intval($post['p_id']) ?>">Lire la suite</a>
 		</li>
 		<div class="clear"></div>
 	<?php endforeach; ?>

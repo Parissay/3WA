@@ -2,46 +2,54 @@
 	
 	include 'application/bdd_connection.php';
 	
-	if (!array_key_exists('Id' , $_GET) OR !ctype_digit($_GET['Id'])){
-			header('Location: index.php');
-			exit();
-		}
-	$query = '
-		SELECT 
-			Post.Id,
-			Title,
-			Contents,
-			CreationTimestamp,
-			Author.Id,
-			FirstName,
-			LastName			
-		FROM Post
-		INNER JOIN Author
-		ON Author.Id = Post.Author_Id
-		WHERE Post.Id=?
-		';
+	// Validation of the query string in the URL.
+	if (!array_key_exists('id' , $_GET) OR !ctype_digit($_GET['id']))
+	{
+		header('Location: index.php');
+		exit();
+	}
 
-	$temp = $dbh->prepare($query);
-	$temp->execute(array($_GET['Id']));
-	$article = $temp->fetch();
-	$query2 = $dbh->prepare('
-		SELECT 
-			Comment.Id,
-			NickName,
-			Comment.Contents AS com,
-			Comment.CreationTimestamp,
-			Comment.Post_Id,
-			Post.Id			
-		FROM Comment
-		INNER JOIN Post
-		ON Comment.Post_Id = Post.Id
-		WHERE Post.Id=?
-		');
+	// Get a post.
+	$query =
+	'
+		SELECT
+			p_id,
+			p_title,
+			p_content,
+			p_creation_date,
+			a_name,
+			a_surname
+		FROM
+			posts
+		INNER JOIN
+			authors
+		ON
+			posts.p_author_id = authors.a_id
+		WHERE
+			posts.p_id = ?
+	';
 
-	$query2->execute(array($_GET['Id']));
+	$result = $pdo -> prepare($query);
+	$result -> execute(array($_GET['id']));
+	$post = $result -> fetch();
 
-	$comments = $query2->fetchAll();
+	// Get all the comments from the post.
+	$query = 
+	'
+		SELECT
+			com_nickname,
+			com_content,
+			com_creation_date
+		FROM
+			comments
+		WHERE
+			com_post_id = ?
+	';
 
+	$result = $pdo -> prepare($query);
+	$result -> execute(array($_GET['id']));
+	$comments = $result -> fetchAll();
+	
+	// Select and display the template.
 	$template = 'show_post';
-
 	include 'layout.phtml';

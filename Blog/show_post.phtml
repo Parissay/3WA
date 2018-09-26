@@ -1,29 +1,33 @@
 <div id="show-post-container">
-	<!-- ARTICLE -->
-	<h2><?= $article['Title'] ?></h2>
-	<h3>Posté le <span class="boldItalic"><?= $article['CreationTimestamp'] ?></span> par <span class="boldItalic"><?= $article['FirstName']?> <?= $article['LastName'] ?></span></h3>
+
+	<!-- Show post -->
+	<h2><?= htmlspecialchars($post['p_title']) ?></h2>
+	<h3>Posté le <span class="boldItalic"><?= htmlspecialchars($post['p_creation_date']) ?></span> par <span class="boldItalic"><?= htmlspecialchars($post['p_name']) ?> <?= htmlspecialchars($post['p_surname']) ?></span></h3>
 	<article>
-		<p><?= $article['Contents'] ?></p>
+		<p><?= htmlspecialchars($post['p_content']) ?></p>
 	</article>
-	<!-- COMMENTAIRES -->
+
+	<!-- Show comments -->
 	<h4>Commentaires</h4>
 	<ul>
 		<?php foreach($comments as $comment): ?>
 			<li>
-				<h5>Posté le <span class="bold"><?= $comment['CreationTimestamp'] ?></span> par <span class="bold"><?= $comment['NickName'] ?></span></h5>
-				<article class="articleShowPost"><?= $comment['com'] ?></article>
+				<h5>Posté le <span class="bold"><?= htmlspecialchars($comment['com_creation_date']) ?></span> par <span class="bold"><?= htmlspecialchars($comment['com_nickname']) ?></span></h5>
+				<article class="articleShowPost"><?= htmlspecialchars($comment['com']) ?></article>
 			</li>
 		<?php endforeach; ?>
 	</ul>
-	<!-- REDIGER UN COMMENTAIRE -->
+
+	<!-- Write a comment -->
 	<h6>Rédiger un commentaire</h6>
 
 	<form action="add_comment.php" method="POST">
-		<input type="hidden" name="Post" method="GET" value="<?= intval($_GET['Id']) ?>">
-		<label for="NickName" class="labelStyle">Pseudo :</label><br>
-		<input class="inputStyle" type="text" name="NickName"><br>
-		<label for="Contents" class="labelStyle">Commentaire :</label><br>
-		<textarea class="areaStyle" id="Contents" name="Contents" type="textarea"></textarea><br>
+		<!-- Using a hidden field to specify which post to attach the comment to -->
+		<input type="hidden" name="post" method="GET" value="<?= intval($_GET['id']) ?>">
+		<label for="nickname" class="labelStyle">Pseudo :</label><br>
+		<input class="inputStyle" type="text" name="nickname"><br>
+		<label for="content" class="labelStyle">Commentaire :</label><br>
+		<textarea class="areaStyle" id="content" name="content" type="textarea"></textarea><br>
 		<input class="valider" type="submit" value="VALIDER">
 	</form>
 </div>

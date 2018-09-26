@@ -1,27 +1,36 @@
 <?php
 
 	include 'application/bdd_connection.php';
+	
+	// Get all the posts and sort in descending order.
+	$query =
+	'
+		SELECT
+			p_id,
+			p_title,
+			p_content,
+			p_creation_date,
+			p_category_id,
+			a_name,
+			a_surname,
+			cat_name
+		FROM
+			posts
+		INNER JOIN
+			authors
+		ON
+			posts.p_author_id = authors.a_id
+		INNER JOIN
+			categories
+		ON
+			posts.p_category_id = categories.cat_id
+		ORDER BY
+			p_creation_date DESC
+	';
 
-	$query = 
-		'SELECT 
-			Post.Id,
-			Title,
-			Contents,
-			CreationTimestamp,
-			Category_Id,
-			FirstName,
-			LastName,
-			Name	
-		FROM Post
-		INNER JOIN Author
-		ON Author.Id = Post.Author_Id
-		INNER JOIN Category
-		ON Category.Id = Post.Category_Id
-		ORDER BY CreationTimestamp DESC';
-
-	$result_set = $dbh->query($query);
-	$articles = $result_set->fetchAll();
-
+	$result = $pdo -> query($query);
+	$posts = $result -> fetchAll();
+	
+	// Select and display the template.
 	$template = 'admin';
-
 	include 'layout.phtml';
