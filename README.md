@@ -3,8 +3,7 @@
 </p>
 
 # 3WA | Repository
-
-![english flag](https://github.com/Parissay/3WA/blob/master/assets/english-flag.png) ## English version 
+### English Version![english flag](https://github.com/Parissay/3WA/blob/master/assets/english-flag.png)
 
 This directory contains some projects carried out during my training at the [3W Academy](https://3wa.fr/) (3WA) in Paris, in the summer of 2018.  
   
@@ -17,7 +16,7 @@ The training program covers five of the most used technologies on the web: HTML,
 
 <hr>
 
-![french flag](https://github.com/Parissay/3WA/blob/master/assets/french-flag.png) ## French version / Version française
+### French version / Version française![french flag](https://github.com/Parissay/3WA/blob/master/assets/french-flag.png) 
 
 Ce répertoire contient certains projets effectués lors de ma formation à la [3W Academy](https://3wa.fr/) (3WA) de Paris, à l'été 2018.
 
