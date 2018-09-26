@@ -1,6 +1,12 @@
-﻿# ![3WA logo](https://github.com/Parissay/3WA/blob/master/assets/3wa-logo.png) 3WA | Repository
+﻿<p align="center">
+  <img src="https://github.com/Parissay/3WA/blob/master/assets/3wa-logo.png" alt="Chifoumi - The Game">
+</p>
 
-![english flag](https://github.com/Parissay/3WA/blob/master/assets/english-flag.png) This directory contains some projects carried out during my training at the [3W Academy](https://3wa.fr/) (3WA) in Paris, in the summer of 2018.  
+# 3WA | Repository
+
+![english flag](https://github.com/Parissay/3WA/blob/master/assets/english-flag.png) ## English version 
+
+This directory contains some projects carried out during my training at the [3W Academy](https://3wa.fr/) (3WA) in Paris, in the summer of 2018.  
   
 The training program covers five of the most used technologies on the web: HTML, CSS, JavaScript, PHP and MySQL.
 
@@ -11,7 +17,9 @@ The training program covers five of the most used technologies on the web: HTML,
 
 <hr>
 
-![french flag](https://github.com/Parissay/3WA/blob/master/assets/french-flag.png) Ce répertoire contient certains projets effectués lors de ma formation à la [3W Academy](https://3wa.fr/) (3WA) de Paris, à l'été 2018.
+![french flag](https://github.com/Parissay/3WA/blob/master/assets/french-flag.png) ## French version / Version française
+
+Ce répertoire contient certains projets effectués lors de ma formation à la [3W Academy](https://3wa.fr/) (3WA) de Paris, à l'été 2018.
 
 Le programme de formation couvre cinq des technologies les plus utilisées sur le web : HTML, CSS, JavaScript, PHP et MySQL.
 
