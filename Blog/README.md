@@ -1,139 +1,139 @@
-﻿# Blog de John Doe
+﻿# John Doe's Blog
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Parissay/3WA/master/Blog/assets/github-view.jpg" alt="Blog project">
 </p>
 
-*An **English version** of this document **is available soon**. Une version de ce document est bientôt disponible en anglais.*
+*Une [version française](https://github.com/Parissay/3WA/blob/master/Blog/README-FR.md) de ce document est aussi disponible. A French version of this document is also available.*
 
-Le ***blog de John Doe*** a été développé lors de ma formation à la **[3W Academy](https://3wa.fr/)** (été 2018).  L'exercice était de créer le blog d'un écrivain, avec pour fonctionnalités :
+The ***John Doe's blog*** was developed during my training at the [3W Academy](https://3wa.fr/) (summer 2018). The exercise was to create a writer's blog, with the following features:
 
-### Côté utilisateur
+### User's side
 
-- affichage des articles et commentaires
-- possibilité d'écrire des commentaires
+- display articles and comments
+- possibility to write comments
 
-### Côté administrateur
+### Admin's side
 
-- rédiger des articles
-- modifier / supprimer des articles
+- write articles
+- edit / delete articles
 
-## Sommaire
+## Table of contents
 
-1. [Création et configuration de la base de données](#cr%C3%A9ation-et-configuration-de-la-base-de-donn%C3%A9es)
+1. [Creation and configuration of the database](#creation-and-configuration-of-the-database)
 	- table authors
 	- table categories
 	- table posts
 	- table comments
-2. [Connexion à la base de données](#connexion-%C3%A0-la-base-de-donn%C3%A9es)
-3. [Création des fichiers de base](#cr%C3%A9ation-des-fichiers-de-base)
+2. [Connection to the database](#connection-to-the-database)
+3. [Creating basic files](#creating-basic-files)
 	- layout.phtml
 	- index.php
 	- index.phtml
-4. [Afficher un article](#afficher-un-article)
+4. [Display an article](#display-an-article)
 	- show_post.php
 	- show_post.phtml
-5. [Ajouter un commentaire](#ajouter-un-commentaire)
+5. [Add a comment](#add-a-comment)
 	- add_comment.php
-6. [Panneau d'administration](#panneau-dadministration)
+6. [Admin Panel](#admin-panel)
 	- admin.php
 	- admin.phtml
-7. [Rédiger un article](#r%C3%A9diger-un-article)
+7. [Write an article](#write-an-article)
 	- add_post.php
 	- add_post.phtml
-8. [Modifier un article](#modifier-un-article)
+8. [Edit an article](#edit-an-article)
 	- edit_post.php
 	- edit_post.phtml
-9. [Supprimer un article](#supprimer-un-article)
+9. [Delete an article](#delete-an-article)
 	- delete_post.php 
 
-## 1. Création et configuration de la base de données
+## 1. Creation and configuration of the database
 
-La première étape est de créer la base de données. Vous trouverez ci-dessous le nom des tables, leurs colonnes, et quelques informations importantes. Pour plus de détails sur les caractéristiques de chacune des colonnes, vous pouvez consulter le fichier [blog.sql](https://github.com/Parissay/3WA/blob/master/Blog/sql/blog.sql)
+The first step is to create the database. You will find below the names of the tables, their columns, and some important informations. For more details on the characteristics of each column, you can consult the file [blog.sql](https://github.com/Parissay/3WA/blob/master/Blog/sql/blog.sql)
 
 ### 1.1. Table *authors*
 
-La table *authors* contient l'ensemble des auteurs d'articles du blog.
+The *authors* table contains all authors of blog articles.
 
-|Nom de la colonne  |Type  | Valeur |Commentaires
+|Name of the column  |Type  | Value |Comments
 |--|--|--|--|
-|a_id  |tinyint  |3  |clef primaire en auto-incrémentation  |
-|a_name  |varchar  |50  |*prénom*  |
-|a_surname  |varchar  |50  |*nom de famille*  |
+|a_id  |tinyint  |3  |primary key in auto-increment  |
+|a_name  |varchar  |50  |name  |
+|a_surname  |varchar  |50  |surname  |
 
 ### 1.2. Table *categories*
 
-La table *categories* contient l'ensemble des catégories auxquelles appartiennes les articles (*posts*).
+The *categories* table contains all the categories to which the articles belong.
 
-|Nom de la colonne  |Type  | Valeur |Commentaires
+|Name of the column  |Type  | Value |Comments
 |--|--|--|--|
-|cat_id  |tinyint  |3  |clef primaire en auto-incrémentation  |
-|cat_name  |varchar  |40  |nom de la catégorie  |
+|cat_id  |tinyint  |3  |primary key in auto-increment  |
+|cat_name  |varchar  |40  |category name  |
 
 ### 1.3. Table *posts*
 
-La table *posts* contient l'ensemble des articles.
+The *posts* table contains all articles
 
-|Nom de la colonne  |Type  | Valeur |Commentaires
+|Name of the column  |Type  | Value |Comments
 |--|--|--|--|
-|p_id  |smallint  |5  |clef primaire en auto-incrémentation  |
-|p_title  |varchar  |100  |titre de l'article  |
-|p_content  |text  |  |contenu de l'article |
-|p_creation_date  |datetime  |  |date et heure de création de l'article |
-|p_author_id  |tinyint  |3  |clef étrangère de la table *authors*  |
-|p_category_id  |tinyint  |3  |clef étrangère de la table *categories*  |
+|p_id  |smallint  |5  |primary key in auto-increment  |
+|p_title  |varchar  |100  |title of the post  |
+|p_content  |text  |  |content of the post |
+|p_creation_date  |datetime  |  |date and time of creation |
+|p_author_id  |tinyint  |3  |foreign key of the *authors* table  |
+|p_category_id  |tinyint  |3  |foreign key of the *categories* table |
 
 ### 1.4. Table *comments*
 
-La table *comments* contient l'ensemble des commentaires se rapportant aux articles.
+The *comments* table contains all comments.
 
-|Nom de la colonne  |Type  | Valeur |Commentaires
+|Name of the column  |Type  | Value |Comments
 |--|--|--|--|
-|com_id  |mediumint  |8  |clef primaire en auto-incrémentation  |
-|com_nickname  |varchar  |30  |pseudo de l'utilisateur  |
-|com_content  |text  |  |contenu du commentaire  |
-|com_creation_date  |datetime  |  |date et heure de création du commentaire  |
-|com_post_id  |smallint  |5  |clef étrangère de la table *posts*  |
+|com_id  |mediumint  |8  |primary key in auto-increment  |
+|com_nickname  |varchar  |30  |nickname of user  |
+|com_content  |text  |  |content of comments  |
+|com_creation_date  |datetime  |  |date and time of creation  |
+|com_post_id  |smallint  |5  |foreign key of the *posts* table |
 
-## 2. Connexion à la base de données
+## 2. Connection to the database
 
 ### bdd_connection.php
 
-Pour établir une connexion avec la base de données il faut créer un dossier `application` à la racine de votre projet. À l'intérieur, créez le fichier [`bdd_connection.php`](https://github.com/Parissay/3WA/blob/master/Blog/application/bdd_connection.php)
+To establish a connection with the database you have to create an `application` folder at the root of your project. Inside, create the file [`bdd_connection.php`](https://github.com/Parissay/3WA/blob/master/Blog/application/bdd_connection.php)
 
-Dans un premier temps on attribue nos identifiants de connexion aux variables correspondantes. Et dans un second temps on test la connexion à la base de données avec un *[try and catch](https://openclassrooms.com/fr/courses/918836-concevez-votre-site-web-avec-php-et-mysql/914293-lire-des-donnees#/id/r-2175084)*
+First we assign our logins to the corresponding variables. In a second time we test the connection to the database with a *[try and catch](https://www.w3schools.com/php/php_exception.asp)*.
 
 ```PHP
 <?php
 
-// On attribue nos identifiants de connexion aux variables correspondantes
-$host_name = '<l`identifiant de votre host>';
-$database = '<nom de votre base de données>';
-$user_name = '<votre nom d`utilisateur>';
-$password = '<votre mot de passe>';
+// We attribute our logins to the corresponding variables
+$host_name = '<host name>';
+$database = '<your database name>';
+$user_name = '<your user name>';
+$password = '<your password>';
 
 $pdo = null;
 try {
-	// On test la connexion à la base de données
+	// We test the connection to the database
 	$pdo = new PDO("mysql:host=$host_name; dbname=$database;", $user_name, $password);
 } catch (PDOException $e) {
-	// Si cela ne fonctionne pas on affiche un message d'erreur
+	// If it does not work, an error message is displayed
 	echo "Erreur!: " . $e->getMessage() . "<br/>";
 	die();
 }
 ```
 
-[`getMessage()`](http://php.net/manual/fr/exception.getmessage.php) renverra l'erreur d'origine. Le plus souvent une erreur `SQLSTATE` pour dire que la connexion n'a pas été effectuée. Il est tout à fait possible de personnaliser ce message :
+[`getMessage()`](http://php.net/manual/en/exception.getmessage.php) will return the original error. Most often a `SQLSTATE` error to say that the connection has not been made. It is possible to personalize this message:
 
 ```PHP
-die('connexion à la base de données impossible');
+die('unable to connect to the database');
 ```
 
-## 3. Création des fichiers de base
+## 3. Creating basic files
 
 ### layout.phtml
 
-Pour une meilleure compréhension du fonctionnement du projet, nous allons dans un premier temps créer le fichier [`layout.phtml`](https://github.com/Parissay/3WA/blob/master/Blog/layout.phtml) à la racine du projet. Celui-ci nous permettra d'avoir le même `header` et `footer` sur l'ensemble du site. Dans la partie `main`, nous allons écrire du code PHP pour inclure automatiquement les *templates* des pages.
+For a better understanding of how the project works, we will first create the file [`layout.phtml`](https://github.com/Parissay/3WA/blob/master/Blog/layout.phtml) to the root of the project. This one will allow us to have the same `header` and` footer` on the whole site. In the `main` part, we will write PHP code to automatically include the *templates* of the pages.
 
 ```PHP
 <main>
@@ -143,19 +143,19 @@ Pour une meilleure compréhension du fonctionnement du projet, nous allons dans 
 
 ### index.php
 
-Notre fichier [`index.php`](https://github.com/Parissay/3WA/blob/master/Blog/index.php) sera appelé en premier. Comme pour l'ensemble des fichiers .php de notre projet, la première étape est de faire appel à notre fichier de connexion à la base de données.
+Our file [`index.php`](https://github.com/Parissay/3WA/blob/master/Blog/index.php) will be called first. As with all .php files in our project, the first step is to call our database connection file.
 
 ```PHP
 include 'application/bdd_connection.php';
 ```
 
-Nous souhaitons afficher sur la page d'accueil l'ensemble des articles classés en ordre antéchronologique (du plus récent au plus ancien). La requête SQL est la suivante :
+We want to display on the home page all articles classified in antechronological order (from most recent to oldest). The SQL request is :
 
 ```PHP
 $query = 
 `
-	// Sélection de l`id de l'article, son titre, son contenu, sa date de création, sa catégorie
-	// ainsi que le prénom et nom de l`auteur
+	// Selection of the article's id, title, content, creation date, category  
+	// as well as the first and last name of the author
 	SELECT 
 		p_id,
 		p_title,
@@ -164,64 +164,64 @@ $query =
 		p_category_id,
 		a_name,
 		a_surname
-	// Dans la table `posts`
+	// In the `posts` table
 	FROM 
 		posts
-	// Et la table `authors`
+	// And `authors` table
 	INNER JOIN 
 		authors
-	// En utilisant la clef étrangère p_author_id
+	// Using the foreign key p_author_id
 	ON 
 		posts.p_author_id = authors.a_id
-	// Et on classe les résultats par ordre antéchronologique
+	// And we classify the results in antechronological order
 	ORDER BY 
 		p_creation_date DESC
 `;
 
-// On exécute la requête qu'on stock dans $result
+// We execute the request which we store in $result
 $result = $pdo -> query($query);
 
-// Retourne un tableau de données avec fetchAll(), qu'on stock dans $posts
+// We return an array of data with fetchAll(), which we store in $posts
 $posts = $result -> fetchAll();
 ```
 
-Pour finir, nous devons définir ce fichier comme étant le *template* `index`, et afficher le `layout.phtml` :
+Finally, we need to define this file as the `index` *template* , and display the` layout.phtml`:
 
 ```PHP
-// On définit ce fichier comme étant le template `index`
+// We define this file as the `index` template
 $template = 'index';
 
-// On fait appel à notre page `layout.phtml`
+// We call our `layout.phtml` page
 include 'layout.phtml';
 ```
 
 ### index.phtml
 
-Maintenant que notre requête SQL est prête, nous devons afficher le résultat sur notre page [`index.phtml`](https://github.com/Parissay/3WA/blob/master/Blog/index.phtml) qui sera automatiquement appelée dans le `layout.phtml` de la manière suivante :
+Now that our SQL request is ready, we need to display the result on our [`index.phtml`](https://github.com/Parissay/3WA/blob/master/Blog/index.phtml) page which will automatically be called in the `layout.phtml` page :
 
 ```PHP
 <?php include $template.'.phtml' ?>
 ```
-qui revient à :
+which comes back to:
 ```PHP
 <?php include 'index.phtml' ?>
 ```
 
-Pour afficher l'ensemble de nos articles, nous devons créer une liste `ul` > `li` en utilisant une boucle `foreach()` pour parcourir le tableau de données, contenu dans la variable `$posts` du fichier `index.php`
+To display all of our articles, we need to create an `ul`>` li` list using a `foreach()` loop to browse the array of data contained in the `$posts` variable in the `index.php` file.
 
-Pour rappel, `foreach ($tableau as $valeur)`
+As a reminder, `foreach($array as $value)`
 
 ```PHP
 <ul>
     <?php foreach ($posts as $post): ?>
     <li>
-            // Notre code
+            // Our code
     </li>
     <?php endforeach; ?>
 </ul>
 ```
 
-À l'intérieur des balises `li` se trouve notre code. On utilise la *valeur* `$post` de notre boucle `foreach()` pour faire appel aux informations de notre article.
+Inside the tags `li` is our code. We use the *value* `$post` of our `foreach()` loop to call the information in our post.
 
 ```PHP
 <article>
@@ -235,54 +235,52 @@ Pour rappel, `foreach ($tableau as $valeur)`
     
 </article>
 ```
-[`htmlspecialchars()`](http://php.net/manual/fr/function.htmlspecialchars.php) permet de convertir les caractères spéciaux en entités HTML. Par exemple `&` sera remplacé par `&amp;`, `>` par `&gt;`, etc.
+[`htmlspecialchars()`](http://php.net/manual/en/function.htmlspecialchars.php) converts special characters into HTML entities. For example `&` will be replaced with `&amp;`, `>` by `&gt;`, etc.
 
-[`substr()`](http://php.net/manual/fr/function.substr.php) permet de retourner un segment d'une chaîne de caractères. Dans notre exemple, `substr()` retourne une chaîne de 0 à 150 caractères :
+[`substr()`](http://php.net/manual/en/function.substr.php) returns a segment of a string. In our example, `substr()` returns a string from 0 to 150 characters:
 
 ```PHP
 substr(htmlspecialchars($post['p_content']), 0, 150)
 ```
-Cela nous permet d'afficher quelque chose comme :
-> Titre de l'article
-> Posté le *2000-01-01 20:00:00* par *John Doe*
+This allows us to display something like:
+> Post title
+> Posted on *2000-01-01 20:00:00* by *John Doe*
 >Mauris quam quam, dictum ac velit id, rhoncus maximus mauris. Nulla vulputate metus id orci rutrum mollis. Sed nisi libero, viverra eget venenatis [...]
 
-## 4. Afficher un article
+## 4. Display an article
 
 ### show_post.php
 
-Nous souhaitons maintenant afficher l'article en entier, ses commentaires, et pouvoir en écrire. Nous allons créer la page [show_post.php](https://github.com/Parissay/3WA/blob/master/Blog/show_post.php)
+Now we have to post the whole article, its comments, and write it. We will create the page [show_post.php](https://github.com/Parissay/3WA/blob/master/Blog/show_post.php)
 
-Comme pour `index.php`, on commence par faire appel à notre fichier `bdd_connection.php`. 
+Like `index.php`, we start with our` bdd_connection.php` file.
 
-Lorsque l'utilisateur clic pour afficher un article, l'`id` de ce dernier se retrouvera dans l'url. Par exemple pour l'article ayant l'`id` n°`5` :
+When the user clicks to post an article, his `id` will end up in the url. For example, the article with `id` #`5`:
 
 `blog/show_post.php?id=5`
 
-Avant d'afficher l'article, on doit vérifier s'il existe. On récupère pour cela l'`id` entré dans l'url à l'aide de `$_GET` :
+Before displaying the post, we must check if it exists. To do this, we get the `id` entered in the url using` $ _GET`:
 
 ```PHP
 include 'application/bdd_connection.php';
 
-// Si l`id, et donc l'article, n'existe pas
+// If the id, and therefore the article, does not exist
 if (!array_key_exists('id' , $_GET) OR !ctype_digit($_GET['id']))
 {
-	// Alors on renvoi vers la page d`accueil
+	// Then we return to the home page
 	header('Location: index.php');
 	exit();
 }
 ```
-[`array_key_exists()`](http://php.net/manual/fr/function.array-key-exists.php) : vérifie si une clé existe dans un tableau
-[`ctype_digit()`](http://php.net/manual/fr/function.ctype-digit.php) : vérifie qu'une chaîne est un entier
+[`array_key_exists()`](http://php.net/manual/en/function.array-key-exists.php) : Checks if the given key or index exists in the array
+[`ctype_digit()`](http://php.net/manual/en/function.ctype-digit.php) : Check for numeric character(s)
 
-Après vérification, on effectue une requête pour obtenir l'article sélectionné par l'utilisateur. Nous ne savons pas encore lequel. Nous ne savons pas encore quel article, son `id` sera donc remplacé par un point d'interrogation `?` dans le `WHERE` (voir le code ci-dessous).
-
-Nous ne pouvons pas déterminer à l'avance quel article sera choisi par l'utilisateur, et donc la valeur de l'`id`. On remplace donc cette valeur par un point d'interrogation `?`
+We can not determine in advance which article will be chosen by the user, and therefore the value of `id`. So we replace this value with a question mark `?`
 
 ```PHP
 $query =
 `
-	// On sélectionne les informations nécessaires
+	// We select the necessary information
 	SELECT
 		p_id,
 		p_title,
@@ -290,77 +288,77 @@ $query =
 		p_creation_date,
 		a_name,
 		a_surname
-	// Dans la table `posts`
+	// In the `posts` table
 	FROM
 		posts
-	// Et la table `authors`
+	// And the `authors` table
 	INNER JOIN
 		authors
-	// En utilisant la clef étrangère p_author_id
+	// Using the foreign key p_author_id
 	ON
 		posts.p_author_id = authors.a_id
-	// Et où l'id de l'article est égal à ?
+	// And where the id of the article is equal to ?
 	WHERE
 		posts.p_id = ?
 `;
 
-// On prépare la requête qu'on stock dans $result
+// We prepare the request which we store in $result
 $result = $pdo -> prepare($query);
 
-// On exécute la requête selon l`id de l'article
+// We execute the request according to the id of the article
 $result -> execute(array($_GET['id']));
 
-// Puis on retourne un jeu de résultat, avec fetch(), qu'on stock dans $post
+// Then we return a result set, with fetch(), which we store in $post
 $post = $result -> fetch();
 ```
 
-On utilise ici [`PDOStatement`](https://secure.php.net/manual/fr/class.pdostatement.php) qui représente une requête préparée et, une fois exécutée, le jeu de résultats associé. [`fetch()`](http://php.net/manual/fr/pdostatement.fetch.php) récupère la ligne du jeu de résultat.
+We use here [`PDOStatement`](https://secure.php.net/manual/en/class.pdostatement.php) which represents a prepared query and, once executed, the associated result set. [`fetch()`](http://php.net/manual/en/pdostatement.fetch.php) gets the line of the result set.
 
-On récupère ensuite l'ensemble des commentaires liés à l'article. Comme pour la requête précédente, on ne sait pas encore quel sera l'article et son `id`. Pour rappel, `com_post_id` est la clef étrangère de la table `posts`.
+We then retrieve all comments related to the article. As for the previous request, we still do not know what the article and its `id` will be. As a reminder, `com_post_id` is the foreign key of the` posts` table.
 
 ```PHP
 $query = 
 `
-	// On sélectionne les informations nécessaires
+	// We select the necessary information
 	SELECT
 		com_nickname,
 		com_content,
 		com_creation_date
-	// Dans la table `comments`
+	// In the `comments` table
 	FROM
 		comments
-	// Et où l'id du commentaire est égal à ?
+	// And where the id of the comment is equal to?
 	WHERE
 		com_post_id = ?
 `;
 
-// On prépare la requête qu'on stock dans $result
+// We prepare the request which we store in $result
 $result = $pdo -> prepare($query);
 
-// On exécute la requête selon l`id de l'article
+// We execute the request according to the id of the article
 $result -> execute(array($_GET['id']));
 
-// Puis on retourne un tableau de données, avec fetchAll(), qu'on stock dans $comments
+// Then we return a result set, with fetchAll(), which we store in $comments
 $comments = $result -> fetchAll();
 ```
 
-Pour finir :
+Finally :
 
 ```PHP
-// On définit ce fichier comme étant le template `show_post`
+// We define this file as the `show_post` template
 $template = 'show_post';
 
-// On fait appel à notre page `layout.phtml`
+// We call our `layout.phtml` page
 include 'layout.phtml';
 ```
 
 ### show_post.phtml
 
-Nous pouvons désormais afficher l'article, ses commentaires, ainsi qu'un formulaire pour en écrire de nouveaux, dans notre page [show_post.phtml](https://github.com/Parissay/3WA/blob/master/Blog/show_post.phtml)
+We can now display the article, its comments, and a form to write new ones, in our page [show_post.phtml](https://github.com/Parissay/3WA/blob/master/Blog/show_post.phtml)
 
-#### Afficher l'article
+#### Show article
 
-On utilise ici la variable `$post`, de notre première requête, pour afficher les données.
+We use here the `$post` variable from our first query to display the date.
 
 ```PHP
 <article>
@@ -375,9 +373,9 @@ On utilise ici la variable `$post`, de notre première requête, pour afficher l
 </article>
 ```
 
-#### Afficher les commentaires
+#### Display comments
 
-On utilise une boucle `foreach()` pour parcourir l'ensemble des commentaires liés à l'article, et les afficher.
+We use a `foreach()` loop to browse all the comments related to the article, and display them.
 
 ```PHP
 <h4>Commentaires</h4>
@@ -395,7 +393,7 @@ On utilise une boucle `foreach()` pour parcourir l'ensemble des commentaires li�
 </ul>
 ```
 
-#### Rédiger un commentaire
+#### Write a comment
 
 ```PHP
 <h6>Rédiger un commentaire</h6>
@@ -415,114 +413,114 @@ On utilise une boucle `foreach()` pour parcourir l'ensemble des commentaires li�
 </form>
 ```
 
-On utilise ici un champ caché pour spécifier à quel article rattacher le commentaire. La méthode `$_GET` relève l'`id` de l'article dans l'url et la transmet lors de l'envoi du formulaire.
+A hidden field is used here to specify which item to attach the comment to. The `$_GET` method records the id of the article in the URL and passes it on when the form is sent.
 
 ```PHP
 <input type="hidden" name="post" method="GET" value="<?= intval($_GET['id']) ?>">
 ```
 
-Le formulaire renvoi vers le fichier `add_comment.php` que nous allons voir un peu plus bas. 
+The form returns to the `add_comment.php` file which we will see a little further down.
 
-Avant cela, nous pouvons modifier le fichier `index.phtml` pour lui ajouter des liens vers nos articles. Ainsi, lorsque l'utilisateur cliquera sur le titre d'un article, ce dernier s'affichera grâce à nos deux nouvelles pages `show_post`. Vous pouvez aussi ajouter un bouton "lire la suite" si vous le souhaitez.
+Before that, we can modify the `index.phtml` file to add links to our articles. When the user clicks on the title of an article, it will be displayed through our new page `show_post.phtml`. You can also add a "read more" button if you wish.
 
 ```PHP
 <h2>
-    <!-- Affiche l'article dont l'id est égale à ? -->
+    <!-- Display the article whose id is equal to? -->
     <a href="show_post.php?id=<?= intval($post['p_id']) ?>"><?= htmlspecialchars($post['p_title']) ?></a>
 </h2>
 ```
 
-Ce qui nous donne, par exemple, pour le troisième article :
+Which gives us, for example, for the third article :
 
 ```PHP
 <h2>
-    <!-- Affiche l'article dont l'id est égale à 3 -->
-    <a href="show_post.php?id=3"><?= Titre du troisième article ?></a>
+    <!-- Display the article whose id is 3 -->
+    <a href="show_post.php?id=3"><?= Title of the third article ?></a>
 </h2>
 ```
 
-[`intval()`](http://php.net/manual/fr/function.intval.php) : retourne la valeur numérique entière équivalente d'une variable.
+[`intval()`](http://php.net/manual/en/function.intval.php) : returns the equivalent integer numeric value of a variable.
 
-## 5. Ajouter un commentaire
+## 5. Add a comment
 
 ### add_comment.php
 
-La page [add_comment.php](https://github.com/Parissay/3WA/blob/master/Blog/add_comment.php) permet à un utilisateur d'ajouter un commentaire.
+The [add_comment.php](https://github.com/Parissay/3WA/blob/master/Blog/add_comment.php) page allows a user to add a comment.
 
 ```PHP
-// On appel le fichier de connexion
+// We call the connection file
 include 'application/bdd_connection.php';
 
 $query =
 `
-	// Insère dans la table `comments` : l'id de l'article, le pseudo de l'utilisateur,
-	// le contenu du commentaire et la date de sa création
+	// Insert in the `comments` table: the article id, the user's nickname,
+	// the content of the comment and the date of its creation
 	INSERT INTO
 		comments (com_post_id, com_nickname, com_content, com_creation_date)
-	// ? = car on ne sait aucunes de ces informations pour l'instant
-	// NOW() = la date de création du commentaire est maintenant
+	// ? = because we do not know any of this information for now
+	// NOW() = the creation date of the comment is now
 	VALUES
 		(?, ?, ?, NOW())
 `;
 
-// On prépare la requête qu'on stock dans $result
+// We prepare the request which we store in $result
 $result = $pdo -> prepare($query);
 
-// On exécute la requête et on stock le pseudo, le commentaire et l'article
-// y étant rattaché dans un nouveau tableau
+// We execute the request and store the nickname, the comment and the article
+// attached to it in a new table
 $result -> execute(array($_POST['post'], $_POST['nickname'], $_POST['content']));
 
-// Pour finir on retourne à l'article modifié d'un nouveau commentaire
+// Finally we go back to the modified article of a new comment
 header('Location: show_post.php?id='.$_POST['post']);
 exit();
 ```
 
-## 6. Panneau d'administration
+## 6. Admin Panel
 
-Le panneau d'administration **affiche l'ensemble des articles** dans un tableau, avec un bouton ***éditer*** et ***supprimer***. Il est tout à fait possible d'ajouter un extrait de chaque article, son auteur, sa catégorie, etc. Mais nous resterons simple pour notre exemple. Le code des pages [admin.php](https://github.com/Parissay/3WA/blob/master/Blog/admin.php) et [admin.phtml](https://github.com/Parissay/3WA/blob/master/Blog/admin.phtml) en ligne.
+The admin panel **displays all articles** in a table, with an **edit** and **delete** button. It is quite possible to add an extract of each article, its author, category, etc. But we will remain simple for our example. The code of the pages : [admin.php](https://github.com/Parissay/3WA/blob/master/Blog/admin.php) and [admin.phtml](https://github.com/Parissay/3WA/blob/master/Blog/admin.phtml).
 
 ### admin.php
 
 ```PHP
-// Appel au fichier de connexion à la base de données
+// Calling the database connection file
 include 'application/bdd_connection.php';
 	
 $query =
 `
-	// Sélection de l'id de l'article, son titre et sa date de création
+	// Selection of the article's id, title and date of creation
 	SELECT
 		p_id,
 		p_title,
 		p_creation_date
-	// Dans la table `posts`
+	// In the `posts` table
 	FROM
 		posts
-	// Et on classe les résultats par ordre antéchronologique
+	// And we classify the results in antechronological order
 	ORDER BY
 		p_creation_date DESC
 `;
 
-// On exécute la requête qu'on stock dans $result
+// We execute the request which we store in $result
 $result = $pdo -> query($query);
 
-// Puis on retourne un tableau de données avec fetchAll() qu'on stock dans $posts
+// Then we return an array of data with fetchAll() which we store in $posts
 $posts = $result -> fetchAll();
 	
-// On définit ce fichier comme étant le template `admin`
+// We define this file as the `admin` template
 $template = 'admin';
 
-// On fait appel à notre page `layout.phtml`
+// We call our `layout.phtml` page
 include 'layout.phtml';
 ```
 
 ### admin.phtml
 
-Le fonctionnement est le même que les pages précédentes. On utilise une boucle `foreach()` pour parcourir le tableau de données et afficher l'ensemble des articles.
+The operation is the same as the previous pages. A `foreach()` loop is used to browse the data table and display all articles.
 
 ```PHP
 <h2>PANNEAU D'ADMINISTRATION</h2>
 
-<!-- voir plus bas pour add_post.php -->
+<!-- see below for add_post.php -->
 <a href="add_post.php">Rédiger un article</a>
 
 <h3>Liste des articles publiés</h3>
@@ -531,97 +529,97 @@ Le fonctionnement est le même que les pages précédentes. On utilise une boucl
     <?php foreach ($posts as $post): ?>
         <tr>
 	    <td><?= htmlspecialchars($post['p_title']) ?></td>
-	    <!-- voir plus bas pour edit_post.php -->
+	    <!-- see below for edit_post.php -->
 	    <td><a href="edit_post.php?id=<?= intval($post['id']) ?>">éditer</a></td>
-	    <!-- voir plus bas pour delete_post.php -->
+	    <!-- see below for delete_post.php -->
 	    <td><a href="delete_post.php?id=<?= intval($post['id']) ?>">supprimer</a></td> 
 	</tr>
     <?php endforeach; ?>
 </table>
 ```
 
-## 7. Rédiger un article
+## 7. Write an article
 
-Sur la page ***panneau d'administration***, l'admin peut cliquer sur un bouton ***rédiger un article*** qui l'envoi vers notre page [`add_post.phtml`](https://github.com/Parissay/3WA/blob/master/Blog/add_post.phtml), qui contient un formulaire avec pour champs :
-- titre de l'article
-- contenu de l'article
-- choix de l'auteur (liste déroulante)
-- choix de la catégorie (liste déroulante)
+On the ***admin panel*** page, the admin can click a button ***write an article*** that will send him to our [`add_post.phtml`](https://github.com/Parissay/3WA/blob/master/Blog/add_post.phtml) page, which contains a form with fields as :
+- title of the article
+- content of the article
+- author's choice (drop-down list)
+- choice of category (drop-down list)
 
 ### add_post.php
 
-Le code de la page [add_post.php](https://github.com/Parissay/3WA/blob/master/Blog/add_post.php).
+The code of the page [add_post.php](https://github.com/Parissay/3WA/blob/master/Blog/add_post.php).
 
-Comme toujours, on commence par appeler notre fichier de connexion à la base de données
+As always, we start by calling our connection file to the database
 
 ```PHP
 include 'application/bdd_connection.php';
 ```
 
-Dans un premier temps on ouvre une condition `if` qui vérifie si le formulaire est vide ou non. Cela nous permet de récupérer les informations nécessaires aux listes déroulante  (auteurs et catégories). Puis on effectue les requêtes.
+First we open an `if` condition that checks whether the form is empty or not. This allows us to retrieve the necessary information from the drop-down lists (authors and categories). Then we make the requests.
 
 ```PHP
-// Si le formulaire est vide
+// If the form is empty
 if (empty($_POST)) {
 
-// 1. Requête pour récupérer les auteurs
+// 1. Request to retrieve the authors
 // =====================================
 $query =
 `
-	// Sélectionde de l'id des auteurs, leurs prénoms et noms
+	// Selection of authors' id, first names and last names
 	SELECT
 		a_id,
 		a_name,
 		a_surname
-	// Dans la table `authors`
+	// In the `authors` table
 	FROM
 		authors
 `;
 
-// On exécute la requête qu'on stock dans $result
+// We execute the request which we store in $result
 $result = $pdo -> query($query);
 
-// Puis on retourne un tableau de données, avec fetchAll(), qu'on stock dans $authors
+// Then we return an array of data, with fetchAll(), which we store in $authors
 $authors = $result -> fetchAll();
 
-// 2. Requête pour récupérer les catégories
+// 2. Request to retrieve categories
 // ========================================
 $query =
 `
-	// Sélection de l'id des catégories et leur noms
+	// Select category id and their names
 	SELECT
 		cat_id,
 		cat_name
-	// Dans la table `categories`
+	// In the `categories` table
 	FROM
 		categories
 `;
 
-// On exécute la requête qu'on stock dans $result
+// We execute the request which we store in $result
 $result = $pdo -> query($query);
 
-// Puis on retourne un tableau de données, avec fetchAll(), qu'on stock dans $categories
+// Then we return an array of data, with fetchAll(), which we store in $categories
 $categories = $result -> fetchAll();
 
-// On définit ce fichier comme étant le template `add_post`
+// This file is defined as the `add_post` template
 $template = 'add_post';
 
-// On fait appel à notre page `layout.phtml`
+// We call our `layout.phtml` page
 include 'layout.phtml';
 
 }
 ```
 
-La seconde étape est d'ajouter l'article selon les informations du formulaire. Le `if` vérifie si le formulaire est vide, dans le cas contraire (`else`) c'est que l'admin a rempli les champs. On peut donc envoyer les données vers la table `posts`.
+The second step is to add the article according to the information on the form. The `if` checks if the form is empty, otherwise (`else`) is that the admin has filled in the fields. So we can send the data to the `posts` table.
 
 ```PHP
-// Sinon (si le formulaire n'est pas vide)
+// Otherwise (if the form is not empty)
 else {
 
 $query =
 `
-	// On insère dans la table `posts` : le titre, le contenu, l'id de l'auteur,
-	// la catégorie, et la date de création de l'article
+	// Insert in the `posts` table: the title, the content, the id of the author,
+	// the category, and the date of creation of the article
 	INSERT INTO
 		posts (
 			p_title,
@@ -630,19 +628,19 @@ $query =
 			p_category_id,
 			p_creation_date
 		)
-	// ? = car on ne sait aucunes de ces informations pour l'instant
-	// NOW() = la date de création de l'article est maintenant
+	// ? = because we do not know any of this information for now
+	// NOW() = the creation date of the article is now
 	VALUES (?, ?, ?, ?, NOW())
 `;
 
-// On prépare la requête qu'on stock dans $result
+// We prepare the request which we store in $result
 $result = $pdo -> prepare($query);
 
-// On stock le titre, le contenu, l'auteur et la catégorie de l'article
-// puis on exécute la requête pour envoyer les données vers notre table
+// We store the title, the content, the author and the category of the article
+// then we run the request to send the data to our table
 $result -> execute([$_POST['title'], $_POST['content'], $_POST['author'], $_POST['category']]);
 
-// On retourne ensuite au panneau d'administration.
+// Then we return to the administration panel.
 header('Location: index.php');
 exit();
 	
@@ -651,12 +649,12 @@ exit();
 
 ### add_post.phtml
 
-Du côté affichage, on utilise une boucle `foreach()` pour les listes déroulantes.
+On the display side, a `foreach()` loop is used for drop-down lists.
 
 ```PHP
 <h2>REDIGER UN ARTICLE</h2>
 
-<!-- Envoi du formulaire avec la méthode post -->
+<!-- Sending the form with the post method -->
 <form action="add_post.php" method="POST">
 
 <label for="title">Titre de l'article :</label>
@@ -690,88 +688,88 @@ Du côté affichage, on utilise une boucle `foreach()` pour les listes déroulan
 ```
 
 
-## 8. Modifier un article
+## 8. Edit an article
 
 ### edit_post.php
 
-Le code de la page [edit_post.php](https://github.com/Parissay/3WA/blob/master/Blog/edit_post.php).
+The code of the page [edit_post.php](https://github.com/Parissay/3WA/blob/master/Blog/edit_post.php).
 
-Comme pour la rédaction d'un article, on utilise la condition `if` pour vérifier que le formulaire est vide. On ajoute une seconde condition `if` pour vérifier que l'article demandé existe bien. On récupère pour cela l'`id` entré dans l'url à l'aide de `$_GET`.
+Like writing an article, we use the `if` condition to check that the form is empty. We add a second `if` condition to verify that the requested article exists. To do this, we get the `id` entered in the url using` $ _GET`.
 
 ```PHP
-// On appel le fichier de connexion
+// We call the connection file
 include 'application/bdd_connection.php';
 
 if (empty($_POST)) {
 
-	// Si l'id, et donc l'article, n'existe pas
+	// If the id, and therefore the article, does not exist
 	if (!array_key_exists('id' , $_GET) OR !ctype_digit($_GET['id']))
 	{
-		// Alors on renvoi vers la page d`admin
+		// Then we return to the admin page
 		header('Location: admin.php');
 		exit();
 	}
 
 	$query =
 	`
-		// On sélectionne les informations nécessaires
+		// We select the necessary information
 		SELECT
 			p_id,
 			p_title,
 			p_content
-		// Dans la table `posts`
+		// In the `posts` table
 		FROM
 			posts
-		// Où l'id de l'article est égal à ?
+		// Where is the id of the article equal to?
 		WHERE
 			p_id = ?
 	`;
 
-	// On stock la requête dans $result
+	// We store the request in $result
 	$result = $pdo -> prepare($query);
 
-	// On exécute la requête selon l'id de l'article
+	// We execute the request according to the id of the article
 	$result -> execute(array($_GET['id']));
 
-	// Puis on retourne un jeu de résultat, avec fetch(), qu'on stock dans $post
+	// Then we return a result set, with fetch(), which we store in $post
 	$post = $result -> fetch();
 
-	// On définit ce fichier comme étant le template `edit_post`
+	// This file is defined as the `edit_post` template
 	$template = 'edit_post';
 
-	// On fait appel à notre page `layout.phtml`
+	// We call our `layout.phtml` page
 	include 'layout.phtml';
 
 }
 ```
 
-La seconde étape est d'ajouter l'article modifié selon les informations du formulaire. Le `if` vérifie si le formulaire est vide, dans le cas contraire (`else`) c'est que l'admin a rempli les champs. On peut donc envoyer les données vers la table `posts`. On ne connais pas encore les données ni l'article choisi par l'admin, on remplace donc le tout par des points d'interrogations `?`
+The second step is to add the modified article according to the information on the form. The `if` checks if the form is empty, otherwise (`else`) is that the admin has filled in the fields. So we can send the data to the `posts` table. We do not yet know the data or the article chosen by the admin, so we replace all with question marks `?
 
 ```PHP
 else {
 
 $query =
 `
-	// On met à jour la table `posts`
+	// We update the `posts` table
 	UPDATE
 		posts
-	// Avec les nouvelles données saisies
+	// With the new data entered
 	SET
 		p_title = ?,
 		p_content = ?
-	// Où l'id de l'article est égal à ?
+	// Where is the id of the article equal to?
 	WHERE
 		p_id = ?
 `;
 
-// On prépare la requête qu'on stock dans $result
+// We prepare the request which we store in $ result
 $result = $pdo -> prepare($query);
 
-// On stock le titre, le contenu et l'id de l'article, puis on exécute la
-// requête pour envoyer les données vers notre table
+// We store the title, the content and the id of the article, then we execute the
+// request to send the data to our table
 $result -> execute(array($_POST['title'], $_POST['content'], $_POST['postId']));
 
-// Et on retourne au panneau d'administration
+// And we go back to the admin panel
 header('Location: admin.php');
 exit();
 	
@@ -780,9 +778,9 @@ exit();
 
 ### edit_post.phtml
 
-Le code de la page [](https://github.com/Parissay/3WA/blob/master/Blog/edit_post.phtml).
+The code of the page [edit_post.phtml](https://github.com/Parissay/3WA/blob/master/Blog/edit_post.phtml).
 
-Cette page ne diffère pas des autres dans son fonctionnement. À noter que comme la page [show_post.phtml](#show_post.phtml), on utilise ici un champ caché pour spécifier à quel article rattacher la modification. La méthode `$_GET` relève l'`id` de l'article dans l'url et la transmet lors de l'envoi du formulaire.
+This page does not differ from others in its operation. Note that like the [show_post.phtml](#show_post.phtml) page, a hidden field is used here to specify which article to attach the change to. The `$ _GET` method records the id of the article in the URL and passes it on when the form is sent.
 
 ```PHP
 <h2>EDITER UN ARTICLE</h2>
@@ -805,51 +803,51 @@ Cette page ne diffère pas des autres dans son fonctionnement. À noter que comm
 </form>
 ```
 
-## 9. Supprimer un article
+## 9. Delete an article
 
 ### delete_post.php
 
-Le code de la page [delete_post.php](https://github.com/Parissay/3WA/blob/master/Blog/delete_post.phphp).
+The code of the [delete_post.php](https://github.com/Parissay/3WA/blob/master/Blog/delete_post.phphp) page.
 
-Après l'appel de notre fichier de connexion, on ajoute une condition `if` pour vérifier que l'article demandé existe bien. On récupère pour cela l'`id` entré dans l'url à l'aide de `$_GET`.
+After calling our login file, we add an `if` condition to verify that the requested article exists. To do this, we get the `id` entered in the url using` $ _GET`.
 
 ```PHP
-// On appel notre fichier de connexion
+// We call our connection file
 include 'application/bdd_connection.php';
 	
-// Si l'id, et donc l'article, n'existe pas
+// If the id, and therefore the article, does not exist
 if (!array_key_exists('id' , $_GET) OR !ctype_digit($_GET['id']))
 {
-	// Alors on renvoi vers la page d`admin
+	// Then we return to the admin page
 	header('Location: admin.php');
 	exit();
 }
 
 $query =
 `
-	// On supprime de la table `posts`
+	// We remove from the `posts` table
 	DELETE FROM
 		posts
-	// L'article dont l'id est égal à ?
+	// The article whose id is equal to?
 	WHERE
 		p_id = ?
 `;
 
-// On prépare la requête qu'on stock dans $result
+// We prepare the request which we store in $ result
 $result = $pdo -> prepare($query);
 
-// On exécute la requête selon l'id de l'article
+// We execute the request according to the id of the article
 $result -> execute(array($_GET['id']));
 
-// Puis on retourne au panneau d'administration
+// Then we go back to the administration panel
 header('Location: admin.php');
 exit();
 ```
 
-## Auteur et licence
+## Author and license
 
-Si vous avez des commentaires, des corrections, des plaintes ou des idées d'amélioration, n'hésitez pas à m'envoyer un message.
+If you have comments, corrections, complaints, or ideas for improvements, feel free to send me a message.
 
-Le **Blog de John Doe** a été créé par [@Parissay](https://github.com/Parissay). 
+The **John Doe's Blog** was created by [@Parissay](https://github.com/Parissay). 
 
-Le **Blog de John Doe** est disponible sous licence MIT. Vous pouvez consulter la [LICENCE](https://github.com/Parissay/3WA/blob/master/Blog/LICENSE.md) pour plus d'informations. ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
+Le **John Doe's Blog** is available under the MIT license. See the [LICENCE](https://github.com/Parissay/3WA/blob/master/Blog/LICENSE.md) for more info. ![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)
