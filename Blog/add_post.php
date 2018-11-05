@@ -1,61 +1,80 @@
 <?php
 
+	session_start();
+
+	// If not connected, return the "session expired" view
+	if ($_SESSION['connected'] == false)
+	{
+		header('Location: session_expired.php');
+		exit();
+	}
+		
 	include 'application/bdd_connection.php';
 
-	if (empty($_POST)) {
-
-		// Get all authors.
-		$query =
-		'
-			SELECT
+	if (empty($_POST)) 
+	{
+		// Get all authors identity (dropdown list)
+		$query = 
+			'SELECT 
 				a_id,
 				a_name,
 				a_surname
-			FROM
-				authors
-		';
+			FROM 
+				authors';
 
-		$result = $pdo -> query($query);
-		$authors = $result -> fetchAll();
+		// Prepare and execute the query
+		$result = $pdo->query($query);
+		$authors = $result->fetchAll();
 
-		// Get all categories.
-		$query =
-		'
-			SELECT
+		// Get all categories (dropdown list)
+		$query = 
+			'SELECT
 				cat_id,
 				cat_name
-			FROM
-				categories
-		';
+			FROM 
+				categories';
 
-		$result = $pdo -> query($query);
-		$categories = $result -> fetchAll();
+		// Prepare and execute the query
+		$result = $pdo->query($query);
+		$categories = $result->fetchAll();
 
-		// Select and display the template.
+		// Select and display the template
 		$template = 'add_post';
 		include 'layout.phtml';
+	}
 
-	} else {
+	elseif(isset($_POST['submit']))
+	{
+		
+		$title = $_POST['title'];
+		$content = $_POST['content'];
+		$author = $_POST['author'];
+		$category = $_POST['category'];
 
-		// Add a post
-		$query =
-		'
-			INSERT INTO
-				posts (
-					p_title,
+		if (empty($title) || empty($content) || empty($author) || empty($category))
+		{
+			// Echo a failure message
+			echo 'empty';
+		}
+		else 
+		{
+			// Insert the new post in posts table
+			$query = 
+				'INSERT INTO posts 
+					(p_title,
 					p_content,
-					p_author_id,
-					p_category_id,
-					p_creation_date
-				)
-			VALUES (?, ?, ?, ?, NOW())
-		';
+					p_author_id, 
+					p_category_id, 
+					p_creation_date)
+				VALUES 
+					(?, ?, ?, ?, NOW())';
 
-		$result = $pdo -> prepare($query);
-		$result -> execute([$_POST['title'], $_POST['content'], $_POST['author'], $_POST['category']]);
+			// Prepare and execute the query
+			$post = $pdo->prepare($query);
+			$post -> execute([$title, $content, $author, $category]);
 
-		// Return to admin panel.
-		header('Location: index.php');
-		exit();
-	
+			// Echo a success message that redirect
+			echo "post";
+		}
+		
 	}

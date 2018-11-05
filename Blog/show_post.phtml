@@ -1,33 +1,50 @@
-<div id="show-post-container">
-
-	<!-- Show post -->
+<!-- Post -->
+<article>
+	<!-- Post title -->
 	<h2><?= htmlspecialchars($post['p_title']) ?></h2>
-	<h3>Posté le <span class="boldItalic"><?= htmlspecialchars($post['p_creation_date']) ?></span> par <span class="boldItalic"><?= htmlspecialchars($post['p_name']) ?> <?= htmlspecialchars($post['p_surname']) ?></span></h3>
-	<article>
-		<p><?= htmlspecialchars($post['p_content']) ?></p>
-	</article>
-
-	<!-- Show comments -->
+	<!-- Post creation date/time and author's identity -->
+	<p class="subtitle">
+		Posté le <?= htmlspecialchars($post['p_creation_date']) ?> par <?= htmlspecialchars($post['a_name'])?> <?= htmlspecialchars($post['a_surname']) ?>
+	</p>
+	<!-- Post content -->
+	<p><?= $post['p_content'] ?></p>
+</article>
+<!-- Comments -->
+<section class="py-3" id="commentLoop">
 	<h4>Commentaires</h4>
+	<?php if (empty($comments)): ?>
+		<p>Il n'y a pas encore de commentaires.</p>
+	<?php endif; ?>
 	<ul>
-		<?php foreach($comments as $comment): ?>
-			<li>
-				<h5>Posté le <span class="bold"><?= htmlspecialchars($comment['com_creation_date']) ?></span> par <span class="bold"><?= htmlspecialchars($comment['com_nickname']) ?></span></h5>
-				<article class="articleShowPost"><?= htmlspecialchars($comment['com']) ?></article>
-			</li>
-		<?php endforeach; ?>
+	<?php foreach($comments as $comment): ?>
+		<li>
+			<p class="subtitle">Posté le <?= htmlspecialchars($comment['com_creation_date']) ?> par <?= htmlspecialchars($comment['com_nickname']) ?></p>
+			<p><?= $comment['com_content'] ?></p>
+		</li>
+	<?php endforeach; ?>
 	</ul>
-
-	<!-- Write a comment -->
-	<h6>Rédiger un commentaire</h6>
-
-	<form action="add_comment.php" method="POST">
-		<!-- Using a hidden field to specify which post to attach the comment to -->
-		<input type="hidden" name="post" method="GET" value="<?= intval($_GET['id']) ?>">
-		<label for="nickname" class="labelStyle">Pseudo :</label><br>
-		<input class="inputStyle" type="text" name="nickname"><br>
-		<label for="content" class="labelStyle">Commentaire :</label><br>
-		<textarea class="areaStyle" id="content" name="content" type="textarea"></textarea><br>
-		<input class="valider" type="submit" value="VALIDER">
-	</form>
-</div>
+</section>
+<!-- Write a comment -->
+<section class="pb-3">
+	<h4>Rédiger un commentaire</h4>
+	<form action="add_comment.php" method="post" id="add-comment-form">
+		<!-- Hidden input to link with the post id -->
+		<input id="comment-postId" type="hidden" name="Post" method="get" value="<?= intval($_GET['id']) ?>">
+		<!-- User nickname -->
+		<div class="form-group">
+			<label for="com_nickname">Pseudo :</label>
+			<input class="form-control" type="text" id="comment-nickname">
+		</div>
+		<!-- Comment content -->
+		<div class="form-group">
+			<label for="com_content">Commentaire :</label>
+			<textarea class="form-control" id="comment-content" type="textarea"></textarea>
+		</div>
+		<!-- Error / validation message -->
+		<p class="form-message hidden container bg-warning text-center py-3 mt-3"></p>
+		<!-- Button submit -->
+		<div class="text-right">
+			<input class="btn btn-success" type="submit" id="comment-submit" value="VALIDER">
+		</div>
+	</form>	
+</section>

@@ -1,23 +1,37 @@
 <?php
+	
+	session_start();
 
-	include 'application/bdd_connection.php';
+	if(isset($_POST['submit']))
+	{		
+		$postId = $_POST['postId'];
+		$nickname = $_POST['nickname'];
+		$content = $_POST['content'];
 
-	// Add a coment to a post.
-	$query =
-	'
-		INSERT INTO
-			comments (
-				com_post_id,
-				com_nickname,
-				com_content,
-				com_creation_date
-			)
-		VALUES
-			(?, ?, ?, NOW())';
+		if (empty($nickname) || empty($content))
+		{
+			// Echo a failure message
+			echo 'empty';
+		}
+		else 
+		{
+			include 'application/bdd_connection.php';
 
-	$result = $pdo -> prepare($query);
-	$result -> execute(array($_POST['post'], $_POST['nickname'], $_POST['content']));
+			// Insert user comment in comments table
+			$query = 
+				'INSERT INTO comments 
+					(com_post_id, 
+					com_nickname, 
+					com_content, 
+					com_creation_date)
+				VALUES 
+					(?, ?, ?, NOW())';
 
-	// Return to the post.
-	header('Location: show_post.php?id='.$_POST['post']);
-	exit();
+			// Prepare and execute the query
+			$result = $pdo->prepare($query);
+			$result -> execute(array($postId, $nickname, $content));
+
+			// Echo a success message
+			echo "comment";
+		}
+	}

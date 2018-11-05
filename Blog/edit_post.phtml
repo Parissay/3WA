@@ -1,20 +1,25 @@
-<h2>EDITER UN ARTICLE</h2>
+<h1>Panneau d'administration</h1>
+<a href="admin_panel.php" class="btn btn-info">Retour au panneau d'administration</a>
+<h2 class="my-5">Éditer un article</h2>
 
-<form action="edit_post.php" method="POST">
-	<!-- Using a hidden field to specify which post to attach the comment to -->
-	<input type="hidden" name="postId" value="<?= intval($post['id']) ?>">
-
-	<label for="Title" class="labelStyle">Titre de l'article :</label>
-	<br>
-	<input class="inputStyle" type="text" name="Title" for="Title" value="<?= htmlspecialchars($post['p_title']) ?>">
-
-	<label for="Contents" class="labelStyle">Votre article :</label>
-	<br>
-	<textarea class="areaStyle" type="text" name="Contents" for="Contents">
-		<?= htmlspecialchars($post['p_content']) ?>
-	</textarea>
-
-	<input type="submit" class="valider" value="MODIFIER">
-	<input type="reset" class="supprimer" value="EFFACER">	
-
+<form action="edit_post.php" method="post" id="edit-post-form">
+	<!-- Hidden input to link with the post id -->
+	<input id="editPost-postId" type="hidden" name="post-id" value="<?= intval($post['p_id']) ?>">
+	<!-- Post title -->
+	<div class="form-group">
+		<label for="title">Titre de l'article :</label>
+		<input id="editPost-title" class="form-control" type="text"for="title" value="<?= htmlspecialchars($post['p_title']) ?>">
+	</div>
+	<!-- Post content -->
+	<div class="form-group">
+		<label for="content">Votre article :</label>
+		<textarea id="editPost-content" class="form-control" rows="8" type="text" for="content"><?= htmlspecialchars($post['p_content']) ?></textarea>
+	</div>
+	<!-- Reset and submit button -->
+	<div class="text-right">
+		<input type="reset" class="btn btn-outline-secondary" value="ANNULER LES MODIFICATIONS">
+		<input type="submit" class="btn btn-success" id="editPost-submit" value="MODIFIER">
+	</div>
+	<!-- Error / validation message -->
+	<p class="form-message hidden container text-center py-3 mt-3"></p>
 </form>

@@ -1,0 +1,29 @@
+<h1>Panneau d'administration</h1>
+<h2 class="my-5">Listes des articles publiés</h2>
+<a href="add_post.php" class="btn btn-success">Rédiger un article</a>
+<div class="container">
+	<table class="table table-hover bg-light mt-3">
+		<?php foreach ($posts as $post): ?>
+		<tr>
+			<!-- Post title -->
+			<td class="align-middle"><?= $post['p_title'] ?></td>
+			<?php if (($post['p_id']) <= 5) { ?>
+			<td colspan="2" class="text-center">
+				<span class="font-italic text-muted">Article non modifiable par les utilisateurs invités</span>
+			</td>
+			<?php } else { ?>
+			<!-- Button edit the post -->
+			<td class="text-center">
+				<a href="edit_post.php?id=<?=intval($post['p_id'])?>" class="btn btn-outline-success d-none d-sm-inline">Éditer l'article</a>
+				<a href="edit_post.php?id=<?=intval($post['p_id'])?>" class="btn btn-success d-block d-sm-none"><i class="far fa-edit"></i></a>
+			</td>
+			<!-- Button delete the post -->
+			<td class="text-center">
+				<a href="delete_post.php?id=<?=intval($post['p_id'])?>" class="btn btn-outline-danger d-none d-sm-inline">Supprimer l'article</a>
+				<a href="delete_post.php?id=<?=intval($post['p_id'])?>" class="btn btn-danger d-block d-sm-none"><i class="far fa-edit"></i></a>
+			</td>
+			<?php } ?>
+		</tr>
+		<?php endforeach ?>
+	</table>
+</div>

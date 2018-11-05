@@ -1,33 +1,42 @@
-<h2>REDIGER UN ARTICLE</h2>
+<h1>Panneau d'administration</h1>
+<a href="admin_panel.php" class="btn btn-info">Retour au panneau d'administration</a>
+<h2 class="my-5">Rédiger un article</h2>
 
-<form action="add_post.php" method="POST">
-
-	<label for="title" class="labelStyle">Titre de l'article :</label>
-	<br>
-	<input class="inputStyle" type="text" name="title" for="title">
-
-	<label for="content" class="labelStyle">Votre article :</label>
-	<br>
-	<textarea class="areaStyle" type="text" name="content" for="content"></textarea>
-
-	<label for="author" class="labelStyle">Auteur :</label>
-	<br>
-		<select class="selectStyle" name="author" for="author">
+<form action="add_post.php" method="post" id="add-post-form">
+	<!-- Post title -->
+	<div class="form-group">
+		<label for="title">Titre de l'article :</label>
+		<input class="form-control" type="text" for="title" id="addPost-title">
+	</div>
+	<!-- Post content -->
+	<div class="form-group">
+		<label for="content">Votre article :</label>
+		<textarea class="form-control" type="text" for="content" id="addPost-content"></textarea>
+	</div>
+	<!-- Post author -->
+	<div class="form-group">
+		<label for="author">Auteur :</label>
+		<select class="custom-select" for="author" id="addPost-author">
 			<?php foreach($authors as $author): ?>
-				<option value="<?= intval($author['id']) ?>"><?= htmlspecialchars($author['a_name']) ?> <?= htmlspecialchars($author['a_surname']) ?></option>
+				<option value="<?= htmlspecialchars($author['a_id']) ?>"><?= htmlspecialchars($author['a_name']) ?> <?= htmlspecialchars($author['a_surname']) ?></option>
 			<?php endforeach; ?>
 		</select>
-
-	<label for="category" class="labelStyle">Catégorie :</label>
-	<br>
-		<select class="selectStyle" name="category" for="category">
-			<?php foreach($categories as $categorie): ?>
-				<option value="<?= intval($categorie['id']) ?>"><?= htmlspecialchars($categorie['cat_name']) ?>
+	</div>
+	<!-- Post category -->
+	<div class="form-group">
+		<label for="category">Catégorie :</label>
+		<select class="custom-select" for="category" id="addPost-category">
+			<?php foreach($categories as $category): ?>
+				<option value="<?= htmlspecialchars($category['cat_id']) ?>"><?= htmlspecialchars($category['cat_name']) ?>
 				</option>
 			<?php endforeach; ?>
 		</select>
-
-	<input type="submit" class="valider" value="PUBLIER">
-	<input type="reset" class="supprimer" value="EFFACER">
-
+	</div>
+	<!-- Reset and submit button -->
+	<div class="text-right">
+		<input type="reset" class="btn btn-outline-secondary" value="EFFACER">
+		<input type="submit" class="btn btn-success" id="addPost-submit" value="VALIDER">
+	</div>
+	<!-- Error / validation message -->
+	<p class="form-message hidden container bg-warning text-center py-3 mt-3"></p>
 </form>

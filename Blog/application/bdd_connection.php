@@ -1,14 +1,5 @@
 <?php
-
-	$host_name = ' ';
-	$database = ' ';
-	$user_name = ' ';
-	$password = ' ';
-
-	$pdo = null;
-	try {
-	  $pdo = new PDO("mysql:host=$host_name; dbname=$database;", $user_name, $password);
-	} catch (PDOException $e) {
-	  echo "Erreur!: " . $e->getMessage() . "<br/>";
-	  die();
-	}
+	// Chemin entre ma page et ma base de données
+	$pdo = new PDO('mysql:host='the host';dbname='database name';charset=utf8','id','password',
+		[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
